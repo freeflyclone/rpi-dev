@@ -46,6 +46,9 @@ Restart the *xinetd* service:
 
     sudo /etc/init.d/xinetd restart
     
+Create a sample file for testing the server:
+
+    cat > /tftpboot/readme.txt < This is readme.txt from the tftp server.
 
 ### Server Setup - NFS
 
