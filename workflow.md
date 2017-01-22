@@ -53,9 +53,16 @@ Create a sample file for testing the server:
 Verify that the tftpd server is working:
 
     tftp localhost
+
+Since tftp is interactive, you'll receive a prompt *tftp>*
+The following commands should be issued to that prompt:
+
     get readme.txt
     quit
 
+If all went well, the *readme.txt* will be in your local directory where you invoked __tftp__ from.  It may be necessary to add port 69 to your firewall's list of allowed ports, if you're running one.
+
+Be advised that there is no security with tftp.  It is left as an exercise to the reader to secure it if need be.
 
 ### Server Setup - NFS
 
