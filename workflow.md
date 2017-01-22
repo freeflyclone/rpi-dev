@@ -20,6 +20,22 @@ To eliminate the SD card I/O bottleneck from the development environment, we'll 
 
 ### Server Setup - tftpboot
 
+Execute the following to install a service for *tftpd* in the xinetd configuration:
+
+    sudo tee /etc/xinetd.d/tftp > /dev/null << EOF
+    service tftp
+    {
+        protocol        = udp
+        port            = 69
+        socket_type     = dgram
+        wait            = yes
+        user            = nobody
+        server          = /usr/sbin/in.tftpd
+        server_args     = /tftpboot
+        disable         = no
+    }
+    EOF
+
 ### Server Setup - NFS
 
 There's a great [guide](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-ubuntu-16-04) for setting up an NFS server written by [Melissa Anderson](https://www.digitalocean.com/community/users/melissaanderson) over at [DigitalOcean](https://www.digitalocean.com).  It's highly recommended!
