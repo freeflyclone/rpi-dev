@@ -1,0 +1,1 @@
+sudo apt install minicom udevadm g++-arm-linux-gnueabihf nfs-kernel-server device-tree-compiler
