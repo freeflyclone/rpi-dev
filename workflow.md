@@ -50,6 +50,12 @@ Create a sample file for testing the server:
 
     echo This is readme.txt from the tftp server > /tftpboot/readme.txt
 
+Verify that the tftpd server is working:
+
+    tftp localhost
+    get readme.txt
+    quit
+
 
 ### Server Setup - NFS
 
