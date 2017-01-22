@@ -12,8 +12,14 @@ Ubuntu 16.04 comes well equipped as a cross-compiling host.  There are a few add
 
     sudo apt install minicom g++-arm-linux-gnueabihf nfs-kernel-server device-tree-compiler
      
-Depending on your particular 16.04 installation, some of thes may already exist.
+Depending on your particular 16.04 installation, some of these may already exist.
 
-### NFS Server setup
+To eliminate the SD card I/O bottleneck from the development environment, we'll use 2 standard tricks:
+* booting from the Host with tftpboot
+* using NFS services for the rpi's filesystem
 
-There's a great [guide](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-ubuntu-16-04) for setting up an NFS server written by [Melissa Anderson](https://www.digitalocean.com/community/users/melissaanderson) over at [DigitalOcean](https://www.digitalocean.com)
+### Server Setup - tftpboot
+
+### Server Setup - NFS
+
+There's a great [guide](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-ubuntu-16-04) for setting up an NFS server written by [Melissa Anderson](https://www.digitalocean.com/community/users/melissaanderson) over at [DigitalOcean](https://www.digitalocean.com).  It's highly recommended!
