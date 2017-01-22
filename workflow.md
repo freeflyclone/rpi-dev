@@ -48,7 +48,8 @@ Restart the *xinetd* service:
     
 Create a sample file for testing the server:
 
-    cat > /tftpboot/readme.txt < This is readme.txt from the tftp server.
+    echo This is readme.txt from the tftp server > /tftpboot/readme.txt
+
 
 ### Server Setup - NFS
 
