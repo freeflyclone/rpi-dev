@@ -36,6 +36,17 @@ Execute the following to install a service for *tftpd* in the xinetd configurati
     }
     EOF
 
+With the service installed, create a folder to match *server_args* in the above service description:
+
+    sudo mkdir /tftpboot
+    sudo chmod -R 777 /tftpboot
+    sudo chown -R nobody /tftpboot
+
+Restart the *xinetd* service:
+
+    sudo /etc/init.d/xinetd restart
+    
+
 ### Server Setup - NFS
 
 There's a great [guide](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-ubuntu-16-04) for setting up an NFS server written by [Melissa Anderson](https://www.digitalocean.com/community/users/melissaanderson) over at [DigitalOcean](https://www.digitalocean.com).  It's highly recommended!
