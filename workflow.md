@@ -10,7 +10,7 @@ The author's development machine is a 4Ghz Core i7, with 32GB of RAM, 256GB of S
 
 Ubuntu 16.04 comes well equipped as a cross-compiling host.  There are a few additional packages that need to be installed:
 
-    sudo apt install minicom g++-arm-linux-gnueabihf nfs-kernel-server device-tree-compiler
+    sudo apt install minicom g++-arm-linux-gnueabihf xinetd tftpd tftp nfs-kernel-server device-tree-compiler
      
 Depending on your particular 16.04 installation, some of these may already exist.
 
