@@ -16,4 +16,4 @@ Depending on your particular 16.04 installation, some of thes may already exist.
 
 ### NFS Server setup
 
-There's a great [guide](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-ubuntu-16-04) for setting up an NFS server at [DigitalOcean](https://www.digitalocean.com)
+There's a great [guide](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-ubuntu-16-04) for setting up an NFS server written by [Melissa Anderson](https://www.digitalocean.com/community/users/melissaanderson) over at [DigitalOcean](https://www.digitalocean.com)
