@@ -67,3 +67,7 @@ Be advised that there is no security with tftp.  It is left as an exercise to th
 ### Server Setup - NFS
 
 There's a great [guide](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-ubuntu-16-04) for setting up an NFS server written by [Melissa Anderson](https://www.digitalocean.com/community/users/melissaanderson) over at [DigitalOcean](https://www.digitalocean.com).  It's highly recommended!
+
+**Note on /etc/exports:**
+
+The *hostname* portion of the client side of an entry, if specified as an IP address range, needs to be of the form xxx.xxx.xxx.0/24 if you're intent is to allow all machines on your subnet to access the given entry.  Failure to do this will result in *mount.nfs: access denied by server while mounting* on the client attempting the mount.
