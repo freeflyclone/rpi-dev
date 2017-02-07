@@ -20,11 +20,13 @@ TOPDIR := $(dir $(lastword $(MAKEFILE_LIST)))
 
 # A user-defined gmake function for building a program.
 # It also copies it to the project's "bin" folder
-PROGRAM_BUILD =$(CXX) -g -o $@ $^ $(LDFLAGS) $(LIBS) ; cp $@ $(TOPDIR)bin
+PROGRAM_BUILD =$(LD) -g -o $@ $^ $(LDFLAGS) $(LIBS) ; cp $@ $(TOPDIR)bin
 
-PROGRAM_OBJS = $(patsubst %.cpp,%.o,$(PROGRAM_SOURCES))
+PROGRAM_OBJS = $(patsubst %.cpp,%.o,$(filter %.cpp,$(PROGRAM_SOURCES)))
+PROGRAM_OBJS += $(patsubst %.c,%.o,$(filter %.c,$(PROGRAM_SOURCES)))
+PROGRAM_OBJS += $(patsubst %.s,%.o,$(filter %.s,$(PROGRAM_SOURCES)))
 
-ECHO_VARS = @echo PROGRAM_SOURCES: $(PROGRAM_SOURCES) PROGRAM_OBJS: $(PROGRAM_OBJS)
+ECHO_VARS = @echo PROGRAM_SOURCES: $(PROGRAM_SOURCES) PROGRAM_OBJS: $(PROGRAM_OBJS) 
 
 # Change the tools to allow for cross compilation by setting CROSS_COMPILE
 # to a toolchain prefix

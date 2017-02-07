@@ -20,8 +20,6 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 
-extern "C" {
-	void _exit(int x) {
-		while(1);
-	}
+void _exit(int x) {
+	while(1);
 }

@@ -1,9 +1,10 @@
 PROGRAM=blinker
 
+CFLAGS+=-nostdlib -nostartfiles -ffreestanding
 CROSS_COMPILE=/opt/gcc-arm-none-eabi-4_9-2015q3/bin/arm-none-eabi-
 include ../topheader.mk
 
-PROGRAM_SOURCES += $(PROGRAM).cpp 
+PROGRAM_SOURCES += $(PROGRAM).c bootstrap.s
 
 include $(TOPDIR)/topfooter.mk
 
