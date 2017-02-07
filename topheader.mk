@@ -20,7 +20,7 @@ TOPDIR := $(dir $(lastword $(MAKEFILE_LIST)))
 
 # A user-defined gmake function for building a program.
 # It also copies it to the project's "bin" folder
-PROGRAM_BUILD =$(LD) -g -o $@ $^ $(LDFLAGS) $(LIBS) ; cp $@ $(TOPDIR)bin
+PROGRAM_BUILD =$(LD) -o $@ $^ $(LDFLAGS) $(LIBS) ; cp $@ $(TOPDIR)bin
 
 # substitute, 1 at a time, the source files of interest to .o files
 # done this way to preserve the order the files are specified in,

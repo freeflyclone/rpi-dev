@@ -1,8 +1,9 @@
 PROGRAM=blinker
 
-CFLAGS+=-nostdlib -nostartfiles -ffreestanding
 CROSS_COMPILE=/opt/gcc-arm-none-eabi-4_9-2015q3/bin/arm-none-eabi-
-LDFLAGS +=-Ttext 0x00008000
+
+CFLAGS+=-nostdlib -nostartfiles -ffreestanding
+LDFLAGS +=-Tblinker.ld
 
 include ../topheader.mk
 

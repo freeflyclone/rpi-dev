@@ -11,8 +11,12 @@ enum Gpio {
 	GPFSEL5
 };
 
+int apple=0;
+
 int notmain(int argc, char *argv[]) {
 	volatile int a = 0;
+
+	apple += 7;
 
 	while(1)
 		a++;
