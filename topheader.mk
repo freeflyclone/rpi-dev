@@ -22,9 +22,15 @@ TOPDIR := $(dir $(lastword $(MAKEFILE_LIST)))
 # It also copies it to the project's "bin" folder
 PROGRAM_BUILD =$(LD) -g -o $@ $^ $(LDFLAGS) $(LIBS) ; cp $@ $(TOPDIR)bin
 
-PROGRAM_OBJS = $(patsubst %.cpp,%.o,$(filter %.cpp,$(PROGRAM_SOURCES)))
-PROGRAM_OBJS += $(patsubst %.c,%.o,$(filter %.c,$(PROGRAM_SOURCES)))
-PROGRAM_OBJS += $(patsubst %.s,%.o,$(filter %.s,$(PROGRAM_SOURCES)))
+# substitute, 1 at a time, the source files of interest to .o files
+# done this way to preserve the order the files are specified in,
+# as this can be significant to the linker
+FILTERED1 = $(patsubst %.cpp,%.o,$(PROGRAM_SOURCES))
+FILTERED2 = $(patsubst %.c,%.o,$(FILTERED1))
+FILTERED3 = $(patsubst %.s,%.o,$(FILTERED2))
+
+
+PROGRAM_OBJS = $(FILTERED3)
 
 ECHO_VARS = @echo PROGRAM_SOURCES: $(PROGRAM_SOURCES) PROGRAM_OBJS: $(PROGRAM_OBJS) 
 

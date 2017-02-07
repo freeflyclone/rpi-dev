@@ -11,7 +11,7 @@ enum Gpio {
 	GPFSEL5
 };
 
-int main(int argc, char *argv[]) {
+int notmain(int argc, char *argv[]) {
 	volatile int a = 0;
 
 	while(1)
