@@ -11,6 +11,9 @@ PROGRAM_SOURCES += bootstrap.s $(PROGRAM).c
 
 include $(TOPDIR)/topfooter.mk
 
+binary: $(PROGRAM)
+	$(OBJCOPY) $(PROGRAM) -O binary $(PROGRAM).bin
+
 strip:
 	$(STRIP) $(PROGRAM)
 

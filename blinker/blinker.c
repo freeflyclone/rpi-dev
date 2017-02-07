@@ -1,26 +1,26 @@
-//#define PERIPHERAL_BASE 0x20000000 // for rpi 1
+/* the following are defined in bootstrap.s */
+extern void PUT32(unsigned int, unsigned int);
+extern unsigned int GET32(unsigned int);
+extern void dummy(unsigned int);
 
-#define PERIPHERAL_BASE 0x3F000000 // for rpi 2&3
-
-enum Gpio {
-	GPFSEL0=PERIPHERAL_BASE + 0x200000,
-	GPFSEL1,
-	GPFSEL2,
-	GPFSEL3,
-	GPFSEL4,
-	GPFSEL5
-};
-
-int apple=0;
+#define	GPFSEL1	0x3F200004
+#define GPSET0	0x3F20001C
+#define GPCLR0	0x3F200028
 
 int notmain(int argc, char *argv[]) {
-	volatile int a = 0;
+	unsigned int ra;
 
-	apple += 7;
+	ra = GET32(GPFSEL1);
+	ra &= ~(7<<18);
+	ra |= 1<<18;
+	PUT32(GPFSEL1, ra);
 
-	while(1)
-		a++;
-		
+	while (1) {
+        PUT32(GPSET0,1<<16);
+        for(ra=0;ra<0x100000;ra++) dummy(ra);
+        PUT32(GPCLR0,1<<16);
+        for(ra=0;ra<0x100000;ra++) dummy(ra);
+	}
 	return 0;
 }
 
