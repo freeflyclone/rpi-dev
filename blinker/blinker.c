@@ -9,6 +9,7 @@ extern void dummy(unsigned int);
 
 int notmain(int argc, char *argv[]) {
 	unsigned int ra;
+	unsigned int delay = 0x100000;
 
 	ra = GET32(GPFSEL1);
 	ra &= ~(7<<18);
@@ -17,9 +18,9 @@ int notmain(int argc, char *argv[]) {
 
 	while (1) {
         PUT32(GPSET0,1<<16);
-        for(ra=0;ra<0x100000;ra++) dummy(ra);
+        for(ra=0;ra<delay;ra++) dummy(ra);
         PUT32(GPCLR0,1<<16);
-        for(ra=0;ra<0x100000;ra++) dummy(ra);
+        for(ra=0;ra<delay;ra++) dummy(ra);
 	}
 	return 0;
 }
