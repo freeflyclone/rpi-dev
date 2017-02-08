@@ -5,7 +5,7 @@ CROSS_COMPILE=/opt/gcc-arm-none-eabi-4_9-2015q3/bin/arm-none-eabi-
 CFLAGS+=-nostdlib -nostartfiles -ffreestanding
 LDFLAGS +=-Tblinker.ld
 
-include ../topheader.mk
+include ../../topheader.mk
 
 PROGRAM_SOURCES += bootstrap.s $(PROGRAM).c
 
