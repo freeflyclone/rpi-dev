@@ -1,4 +1,4 @@
-all: ${PROGRAM}
+${ALL}: ${DEPENDS}
 
 ${PROGRAM}: ${PROGRAM_OBJS}
 	$(call PROGRAM_BUILD)

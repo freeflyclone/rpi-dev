@@ -20,16 +20,19 @@ TOPDIR := $(dir $(lastword $(MAKEFILE_LIST)))
 
 # A user-defined gmake function for building a program.
 # It also copies it to the project's "bin" folder
-PROGRAM_BUILD =$(LD) -o $@ $^ $(LDFLAGS) $(LIBS) ; cp $@ $(TOPDIR)bin
+PROGRAM_BUILD =$(LD) -o $@ $^ $(LDFLAGS) $(LIBS)
 
-# substitute, 1 at a time, the source files of interest to .o files
-# done this way to preserve the order the files are specified in,
+# Define the all target.  Trying to figure out how to override it
+# within subdir Makefile
+ALL=all
+DEPENDS=${PROGRAM}
+
+# Substitute, 1 at a time, the source files of interest to .o files.
+# Done this way to preserve the order the files are specified in,
 # as this can be significant to the linker
 FILTERED1 = $(patsubst %.cpp,%.o,$(PROGRAM_SOURCES))
 FILTERED2 = $(patsubst %.c,%.o,$(FILTERED1))
 FILTERED3 = $(patsubst %.s,%.o,$(FILTERED2))
-
-
 PROGRAM_OBJS = $(FILTERED3)
 
 ECHO_VARS = @echo PROGRAM_SOURCES: $(PROGRAM_SOURCES) PROGRAM_OBJS: $(PROGRAM_OBJS) 
