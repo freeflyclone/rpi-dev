@@ -12,6 +12,9 @@ PROGRAM_SOURCES += bootstrap.s $(PROGRAM).c
 
 include $(TOPDIR)/topfooter.mk
 
+uimage: image
+	mkimage -f $(PROGRAM).its $(PROGRAM).itb
+
 image: binary
 	mkimage -a 0x8000 -e 0x8000 -C none -A arm -T standalone -d $(PROGRAM).bin $(PROGRAM).img
 
