@@ -16,4 +16,13 @@
 			compression = "none";
 		};
 	};
+
+	configurations {
+		default = "config@1";
+
+		config@1 {
+			description = "Blinker Binary";
+			kernel = "kernel@1";
+		};
+	};
 };

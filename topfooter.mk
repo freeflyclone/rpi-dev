@@ -6,8 +6,7 @@ ${PROGRAM}: ${PROGRAM_OBJS}
 clean:
 	@-rm -rf $(PROGRAM)
 	@-rm -rf $(PROGRAM_OBJS)
-	@-rm -rf $(PROGRAM).bin
-	@-rm -rf $(PROGRAM).elf
+	$(EXTRA_CLEAN)
 
 test:
 	$(call ECHO_VARS)
