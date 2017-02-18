@@ -2,7 +2,7 @@
 : ${ARCH?"must be set first"}
 
 cd rootfs
-mkdir bin dev proc root run sbin sys tmp
+mkdir bin dev mnt proc root run sbin sys tmp
 echo "Creating initramfs..."
 find . | cpio -H newc -o > "../initramfs-${ARCH}.cpio" 2>/dev/null
 cd ..
