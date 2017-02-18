@@ -1,0 +1,7 @@
+#!/bin/bash
+
+mkdir rootfs
+cd rootfs
+mkdir bin dev etc init proc root run sbin sys tmp
+cd ..
+
