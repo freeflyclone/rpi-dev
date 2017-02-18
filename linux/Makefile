@@ -1,7 +1,8 @@
-OUTPUTFILE=linux
+DESTDIR=/tftpboot
 TFTPBOOT=tftpboot
 DTB=bcm2836-rpi-2-b.dtb
 ZIMAGE=zImage
+UINITRD=uInitrd
 
 HAVE_KERNEL=$(shell ls kernel)
 
@@ -13,9 +14,9 @@ export CROSS_COMPILE=arm-linux-gnueabihf-
 include ../topheader.mk
 
 ALL=$(TFTPBOOT).scr
-DEPENDS=$(ZIMAGE) $(DTB)
+DEPENDS=$(ZIMAGE) $(DTB) $(UINITRD)
 
-EXTRA_CLEAN=@-rm -rf $(OUTPUTFILE).itb $(TFTPBOOT).scr $(ZIMAGE) $(DTB)
+EXTRA_CLEAN=@-rm -rf $(TFTPBOOT).scr $(ZIMAGE) $(DTB) $(UINITRD)
 
 
 # the default targets
@@ -30,6 +31,9 @@ $(ZIMAGE): kernel/arch/arm/boot/$(ZIMAGE)
 $(DTB): kernel/arch/arm/boot/dts/$(DTB)
 	cp $< $@
 
+$(UINITRD): initramfs/uInitrd
+	cp $< $@
+
 kernel/arch/arm/boot/$(ZIMAGE):
 ifeq ($(HAVE_KERNEL),)
 	@echo Linux kernel source is not present, and it should be!
@@ -42,6 +46,7 @@ distclean:
 	(cd kernel ; make distclean)
 
 install: $(TFTPBOOT).scr
-	cp $(TFTPBOOT).scr /tftpboot
-	cp $(ZIMAGE) /tftpboot
-	cp $(DTB) /tftpboot
+	cp $(TFTPBOOT).scr $(DESTDIR)
+	cp $(ZIMAGE) $(DESTDIR)
+	cp $(DTB) $(DESTDIR)
+	cp $(UINITRD) $(DESTDIR)
