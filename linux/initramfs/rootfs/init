@@ -1,0 +1,9 @@
+#!/bin/busybox sh
+
+# Create utils links to busybox
+/bin/busybox --install -s /bin
+/bin/busybox --install -s /sbin
+
+# devfs required for getty
+mount -t devtmpfs none /dev
+exec /bin/init $*
