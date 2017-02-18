@@ -1,7 +1,6 @@
 #!/bin/bash
 : ${ARCH?"must be set first"}
 
-mkdir rootfs
 cd rootfs
 mkdir bin dev proc root run sbin sys tmp
 echo "Creating initramfs..."
