@@ -1,7 +1,11 @@
 #!/bin/bash
+: ${ARCH?"must be set first"}
 
 mkdir rootfs
 cd rootfs
-mkdir bin dev etc proc root run sbin sys tmp
+mkdir bin dev proc root run sbin sys tmp
+echo "Creating initramfs..."
+find . | cpio -H newc -o > "../initramfs-${ARCH}.cpio" 2>/dev/null
 cd ..
+sudo mkimage -A ${ARCH} -T ramdisk -C none -n uInitrd -d initramfs-${ARCH}.cpio uInitrd
 
