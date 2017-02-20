@@ -14,9 +14,9 @@ export CROSS_COMPILE=arm-linux-gnueabihf-
 include ../topheader.mk
 
 ALL=$(TFTPBOOT).scr
-DEPENDS=$(ZIMAGE) $(DTB) $(UINITRD)
+DEPENDS=$(ZIMAGE) $(DTB) drivers $(UINITRD)
 
-EXTRA_CLEAN=@-rm -rf $(TFTPBOOT).scr $(ZIMAGE) $(DTB) $(UINITRD) ; (cd drivers ; make clean)
+EXTRA_CLEAN=@-rm -rf $(TFTPBOOT).scr $(ZIMAGE) $(DTB) $(UINITRD) initramfs/uInitrd initramfs/initramfs-$(ARCH).cpio ; (cd drivers ; make clean)
 
 
 # the default targets
@@ -41,6 +41,9 @@ else
 	@echo Found linux kernel...
 	(cd kernel ; make bcm2835_defconfig ; make -j8 $(ZIMAGE) dtbs)
 endif
+
+initramfs/uInitrd:
+	(cd initramfs ; ./mkrootfs)
 
 distclean:
 	(cd kernel ; make distclean)

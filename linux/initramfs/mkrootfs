@@ -6,6 +6,7 @@ cd rootfs
 mkdir bin dev mnt proc root run sbin sys tmp
 mkdir -p ${MODULES_PATH}
 cp ../../kernel/drivers/spi/*.ko ${MODULES_PATH}
+find ../../drivers -name \*.ko -exec cp {} ${MODULES_PATH} \;
 echo "Creating initramfs..."
 find . | cpio -H newc -o > "../initramfs-${ARCH}.cpio" 2>/dev/null
 cd ..
