@@ -3,7 +3,6 @@ TFTPBOOT=tftpboot
 DTB=bcm2836-rpi-2-b.dtb
 ZIMAGE=zImage
 UINITRD=uInitrd
-KERNEL_VERSION=4.10.0-rc8
 
 HAVE_KERNEL=$(shell ls kernel)
 
@@ -17,7 +16,7 @@ include ../topheader.mk
 ALL=$(TFTPBOOT).scr
 DEPENDS=$(ZIMAGE) $(DTB) $(UINITRD)
 
-EXTRA_CLEAN=@-rm -rf $(TFTPBOOT).scr $(ZIMAGE) $(DTB) $(UINITRD)
+EXTRA_CLEAN=@-rm -rf $(TFTPBOOT).scr $(ZIMAGE) $(DTB) $(UINITRD) ; (cd drivers ; make clean)
 
 
 # the default targets
@@ -52,5 +51,8 @@ install: $(TFTPBOOT).scr
 	cp $(DTB) $(DESTDIR)
 	cp $(UINITRD) $(DESTDIR)
 
+.PHONY: drivers
+
 drivers:
 	(cd drivers ; make)
+
