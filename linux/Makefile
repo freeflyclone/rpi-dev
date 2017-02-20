@@ -51,3 +51,6 @@ install: $(TFTPBOOT).scr
 	cp $(ZIMAGE) $(DESTDIR)
 	cp $(DTB) $(DESTDIR)
 	cp $(UINITRD) $(DESTDIR)
+
+drivers:
+	(cd drivers ; make)
