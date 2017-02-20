@@ -3,6 +3,7 @@ TFTPBOOT=tftpboot
 DTB=bcm2836-rpi-2-b.dtb
 ZIMAGE=zImage
 UINITRD=uInitrd
+KERNEL_VERSION=4.10.0-rc8
 
 HAVE_KERNEL=$(shell ls kernel)
 

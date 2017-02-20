@@ -1,8 +1,11 @@
 #!/bin/bash
 : ${ARCH?"must be set first"}
+MODULES_PATH="lib/modules/4.10.0-rc8+"
 
 cd rootfs
 mkdir bin dev mnt proc root run sbin sys tmp
+mkdir -p ${MODULES_PATH}
+cp ../../kernel/drivers/spi/*.ko ${MODULES_PATH}
 echo "Creating initramfs..."
 find . | cpio -H newc -o > "../initramfs-${ARCH}.cpio" 2>/dev/null
 cd ..
